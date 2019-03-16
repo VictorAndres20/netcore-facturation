@@ -1,0 +1,42 @@
+@model IEnumerable<AppFacturacion.Models.Detalles>
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<table class="table custom-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioUnitario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Facturas)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioUnitario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Productos.Producto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Facturas.NombreCliente)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

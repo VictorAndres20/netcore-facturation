@@ -1,0 +1,21 @@
+Crear aplicación web .NET con MVC
+
+Requerimientos:
+
+x Debe mostrar una pantalla con el listado de Facturas con los datos de Fecha, NumeroFactura, NombreCliente y Total en ese orden.
+
+x Debe permitir crear una factura nueva en la cual ingrese todos los datos correspondientes a la factura y a los detalles.
+  La base de datos debe contar con al menos 6 productos que pueden ser precargados en la tabla Productos.
+
+x En la creación de cada factura debe calcular el Total Descuento, Total Impuesto y el Total de acuerdo a los datos ingresados
+  en el formulario de creación de factura.
+
+x Debe permitir editar y eliminar una factura. 
+  (La vista para Editar puede ser la misma de Crear).
+
+x No es necesario hacer un formulario para crear productos, éstos se pueden insertar directamente en la base de datos.
+
+x Debe validar que no ingrese una fecha anterior al día actual, que ingrese al menos un detalle, 
+  que la cantidad de productos sea mayor a 0 y que el Precio Unitario no sea negativo.
+
+x Debe usar Entity Framework.

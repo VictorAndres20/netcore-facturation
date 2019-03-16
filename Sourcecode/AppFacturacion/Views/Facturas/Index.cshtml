@@ -1,0 +1,62 @@
+@model IEnumerable<AppFacturacion.Models.Facturas>
+
+@{
+    ViewData["Title"] = "Facturas";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 text-center">
+            <h3>Facturas</h3>
+        </div>
+        <div class="col-sm-6 text-center">
+            <p>
+                <a asp-action="Create" class="btn btn-info">Crear nueva factura</a>
+            </p>
+        </div>
+    </div>
+</div>
+ <div class="container-table">
+<table class="table custom-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.idFactura" class="btn btn-primary"><i class="far fa-edit"></i></a> 
+                <a asp-action="Details" asp-route-id="@item.idFactura" class="btn btn-info"><i class="fas fa-info-circle"></i></a> 
+                <a asp-action="Delete" asp-route-id="@item.idFactura" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                <a asp-controller="Detalles" asp-action="Create" asp-route-id="@item.idFactura" class="btn btn-success"><i class="fas fa-dollar-sign"></i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+</div>

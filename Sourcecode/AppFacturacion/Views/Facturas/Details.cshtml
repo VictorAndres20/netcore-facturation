@@ -1,0 +1,132 @@
+@model AppFacturacion.Models.Facturas
+@using AppFacturacion.Models
+
+@{
+    ViewData["Title"] = "Info";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 text-center">
+            <h3>Información de factura</h3>
+        </div>
+        <div class="col-sm-6 text-center">
+            <p>
+                <a asp-action="Index" class="btn btn-info"><i class="fas fa-arrow-circle-left"></i> Ir a facturas</a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>Factura</h4>
+            <hr />
+            <div class="row" style="font-size: 12px;">
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.NumeroFactura)
+                </dt>
+                <dd class = "col-sm-7">
+                    @Html.DisplayFor(model => model.NumeroFactura)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </dt>
+                <dd class = "col-sm-7">
+                    @Html.DisplayFor(model => model.Fecha)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.TipodePago)
+                </dt>
+                <dd class = "col-sm-7">
+                    @Html.DisplayFor(model => model.TipodePago)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.DocumentoCliente)
+                </dt>
+                <dd class = "col-sm-7">
+                    @Html.DisplayFor(model => model.DocumentoCliente)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.NombreCliente)
+                </dt>
+                <dd class = "col-sm-7">
+                    @Html.DisplayFor(model => model.NombreCliente)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.SubTotal)
+                </dt>
+                <dd class = "col-sm-7">
+                    @Html.DisplayFor(model => model.SubTotal)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.Descuento)
+                </dt>
+                <dd class = "col-sm-7">
+                    @Html.DisplayFor(model => model.Descuento)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.IVA)
+                </dt>
+                <dd class = "col-sm-7">
+                    @Html.DisplayFor(model => model.IVA)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.TotalDescuento)
+                </dt>
+                <dd class = "col-sm-7">
+                    @Html.DisplayFor(model => model.TotalDescuento)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.TotalImpuesto)
+                </dt>
+                <dd class = "col-sm-7">
+                    @Html.DisplayFor(model => model.TotalImpuesto)
+                </dd>
+                <dt class = "col-sm-5">
+                    @Html.DisplayNameFor(model => model.Total)
+                </dt>
+                <dd class = "col-sm-7">
+                    @Html.DisplayFor(model => model.Total)
+                </dd>
+            </div>
+            <div>
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.idFactura"><i class="far fa-edit"></i> Editar</a>
+                <a asp-action="Index" class="btn btn-info"><i class="fas fa-arrow-circle-left"></i> Ir a facturas</a>
+                <a asp-controller="Detalles" asp-action="Create" asp-route-id="@Model.idFactura" class="btn btn-success"><i class="fas fa-dollar-sign"></i> Agregar detalle</a>
+            </div>
+        </div> 
+        <div class="col-sm-6">
+            <h4>Detalles de @Html.DisplayFor(model => model.NombreCliente) </h4>
+            <hr />
+            <table class="table custom-table">
+                <thead>
+                    <tr>
+                        <th>
+                            Producto
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            Precio por unidad
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in ViewData["detalles"] as IEnumerable<Detalles>) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Productos.Producto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cantidad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecioUnitario)
+                            </td>
+                        </tr>
+                }
+                </tbody>
+            </table>
+        </div>   
+    </div>
+</div>
+

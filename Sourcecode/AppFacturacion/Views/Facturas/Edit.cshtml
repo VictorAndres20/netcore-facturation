@@ -1,0 +1,133 @@
+@model AppFacturacion.Models.Facturas
+
+@{
+    ViewData["Title"] = "Editar";
+}
+<div class="container-fluid"></div>
+    <div class="row">
+        <div class="col-sm-6 text-center">
+            <h3>Editar Factura</h3>
+        </div>
+        <div class="col-sm-6 text-center">
+            <p>
+                <a asp-action="Index" class="btn btn-info"><i class="fas fa-arrow-circle-left"></i> Ir a facturas</a>
+            </p>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6">
+            <form asp-action="Edit" class="form1">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="idFactura" />
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="NumeroFactura" class="control-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="NumeroFactura" class="form-control form-control-sm" />
+                        <span asp-validation-for="NumeroFactura" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="Fecha" class="control-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="date" asp-for="Fecha" class="form-control form-control-sm" />
+                        <span asp-validation-for="Fecha" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="TipodePago" class="control-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="TipodePago" class="form-control form-control-sm" />
+                        <span asp-validation-for="TipodePago" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="DocumentoCliente" class="control-label"></label>
+                    </div>    
+                    <div class="col-sm-8">
+                        <input asp-for="DocumentoCliente" class="form-control form-control-sm" />
+                        <span asp-validation-for="DocumentoCliente" class="text-danger"></span>
+                    </div>                
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="NombreCliente" class="control-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="NombreCliente" class="form-control form-control-sm" />
+                        <span asp-validation-for="NombreCliente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="SubTotal" class="control-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="SubTotal" class="form-control form-control-sm" />
+                        <span asp-validation-for="SubTotal" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="Descuento" class="control-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="Descuento" class="form-control form-control-sm" />
+                        <span asp-validation-for="Descuento" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="IVA" class="control-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="IVA" class="form-control form-control-sm" />
+                        <span asp-validation-for="IVA" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="TotalDescuento" class="control-label"></label>
+                    </div>  
+                    <div class="col-sm-8">
+                        <input asp-for="TotalDescuento" class="form-control form-control-sm" />
+                        <span asp-validation-for="TotalDescuento" class="text-danger"></span>
+                    </div>                  
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="TotalImpuesto" class="control-label"></label>
+                    </div>  
+                    <div class="col-sm-8">
+                        <input asp-for="TotalImpuesto" class="form-control form-control-sm" />
+                        <span asp-validation-for="TotalImpuesto" class="text-danger"></span>
+                    </div>                   
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="Total" class="control-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="Total" class="form-control form-control-sm" />
+                        <span asp-validation-for="Total" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-success" type="submit"><i class="fas fa-check"></i> Guardar cambios</button>
+                    <a asp-action="Index" class="btn btn-info"><i class="fas fa-arrow-circle-left"></i> Ir a facturas</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

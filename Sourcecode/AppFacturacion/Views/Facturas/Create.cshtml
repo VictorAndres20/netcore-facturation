@@ -1,0 +1,146 @@
+@model AppFacturacion.Models.Facturas
+@using AppFacturacion.Models
+
+@{
+    ViewData["Title"] = "Nueva Factura";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 text-center">
+            <h3>Nueva Factura</h3>
+        </div>
+        <div class="col-sm-6 text-center">
+            <p>
+                <a asp-action="Index" class="btn btn-info"><i class="fas fa-arrow-circle-left"></i> Ir a facturas</a>
+            </p>
+        </div>
+    </div>
+    <hr />
+    <form asp-action="Create" class="form1" id="formularioFactura">
+    <div class="row">
+        <div class="col-sm-6">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="NumeroFactura" class="control-label">Número de factura</label>
+                    </div>                    
+                    <div class="col-sm-8">
+                        <input asp-for="NumeroFactura" class="form-control form-control-sm" />
+                        <span asp-validation-for="NumeroFactura" class="text-danger"></span>
+                    </div>                    
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="Fecha" class="control-label">Fecha:</label>
+                    </div>                    
+                    <div class="col-sm-8">
+                        <input id="fechaFactura" type="date" asp-for="Fecha" class="form-control form-control-sm" />
+                        <span asp-validation-for="Fecha" class="text-danger"></span>
+                    </div>                    
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="TipodePago" class="control-label">Tipo de pago</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="TipodePago" class="form-control form-control-sm" />
+                        <span asp-validation-for="TipodePago" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="DocumentoCliente" class="control-label">Documento del cliente</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="DocumentoCliente" class="form-control form-control-sm" />
+                        <span asp-validation-for="DocumentoCliente" class="text-danger"></span>
+                    </div>                    
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="NombreCliente" class="control-label">Nombre del cliente</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="NombreCliente" class="form-control form-control-sm" />
+                        <span asp-validation-for="NombreCliente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="Descuento" class="control-label">% descuento</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="Descuento" class="form-control form-control-sm" />
+                        <span asp-validation-for="Descuento" class="text-danger"></span>
+                    </div>                    
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label asp-for="IVA" class="control-label">% IVA</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="IVA" class="form-control form-control-sm" />
+                        <span asp-validation-for="IVA" class="text-danger"></span>
+                    </div>
+                </div>
+        </div>
+        <div class="col-sm-3">
+                <h5>Facturar producto obligatorio</h5>
+                <hr />
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label class="control-label">Producto</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select name="codProducto" id="codProducto" class="form-control form-control-sm">
+                        @foreach (var item in ViewData["productos"] as IEnumerable<Productos>) {
+                            <option value="@(item.idProducto)">@(item.Producto)</option>                               
+                        }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label class="control-label">Cantidad</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input placeholder="Por defecto es 0" id="cantProducto" type="number" class="form-control form-control-sm" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <label class="control-label">Precio unitario</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input placeholder="Por defecto es 0" id="precProducto" type="number" class="form-control form-control-sm" />
+                    </div>
+                </div>                   
+                <div class="form-group text-center">
+                    <button id="btnAgregar" class="btn btn-success" onclick="agregarProducto()" type="button">Añadir producto</button>
+                </div>
+        </div>
+        <div class="col-sm-3">
+            <div id="productoAgregado">
+                <div id="mensajeAgregar" class="alert alert-danger" role="alert">
+                    ¡No se ha agregado el producto! No se puede crear la factura
+                </div>
+            </div>           
+            <input hidden name="codigoProducto" id="codigoProducto" value="0" />
+            <input hidden name="cantidadProducto" id="cantidadProducto" value="0" />
+            <input hidden name="precioProducto" id="precioProducto" value="0" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group text-center">
+                <button disabled="true" id="btnAgregarFactuta" class="btn btn-success" onclick="crearFactura()" type="button"><i class="fas fa-check"></i> Crear factura con detalle</button>
+                <a asp-action="Index" class="btn btn-info"><i class="fas fa-arrow-circle-left"></i> Ir a facturas</a>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
